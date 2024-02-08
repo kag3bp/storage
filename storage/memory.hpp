@@ -1,26 +1,28 @@
 #ifndef MEMORY_HPP_
 #define MEMORY_HPP_
 
-class CMemory
+template <typename T, unsigned int maxSize> class CMemory
 {
   public:
 
     struct SBlock
     {
       bool isFree;
-      int object;
+      T object;
     };
 
     CMemory();
 
-    int* newObject(void);
+    T* newObject(void);
 
-    void freeObject(int* f_ptrObject);
+    void freeObject(T* f_ptrObject);
 
   private:
 
-    SBlock m_chunk[32];
+    SBlock m_chunk[maxSize];
 
 };
+
+#include "memory.inl"
 
 #endif //MEMORY_HPP_

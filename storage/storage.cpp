@@ -4,34 +4,60 @@
 #include <iostream>
 #include "memory.hpp"
 
+struct SRandom
+{
+  bool asd;
+  int number;
+};
 
 int main()
 {
-  CMemory memory;
+  CMemory<float, 32> memory;
+  CMemory<SRandom, 2> memory2;
 
-  int* asd = memory.newObject();
+
+  float* asd = memory.newObject();
 
   *asd = 12;
 
-  int* asd2 = memory.newObject();
+  float* asd2 = memory.newObject();
 
   *asd2 = 13;
 
-  int* asd3 = memory.newObject();
+  float* asd3 = memory.newObject();
 
   if(nullptr == asd3)
   {
     std::cout << "asd3 is nullptr\n";
   }
 
-  std::cout << "asd \n" << *asd;
-  std::cout << "asd2 \n" << *asd2;
+  std::cout << "asd \n" << *asd << "\n";
+  std::cout << "asd2 \n" << *asd2 << "\n";
 
   memory.freeObject(asd2);
   memory.freeObject(asd);
 
-    
+  SRandom* struct1 = memory2.newObject();
+  SRandom* struct2 = memory2.newObject();
+  SRandom* struct3 = memory2.newObject();
 
+  struct1->number = 1;
+  struct2->number = 2;
+
+  if(nullptr == struct3)
+  {
+    std::cout << "struct3 is nullptr\n";
+  }
+  else
+  {
+    struct3->number = 33;
+  }
+
+  std::cout << "struct1->number \n" << struct1->number << "\n";
+  std::cout << "struct2->number \n" << struct2->number << "\n";
+    
+  memory2.freeObject(struct2);
+  memory2.freeObject(struct1);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -1,8 +1,9 @@
-#include "memory.hpp"
+#ifndef MEMORY_INL_
+#define MEMORY_INL_
 
-int* CMemory::newObject(void)
+template <typename T, unsigned int maxSize> T* CMemory<T, maxSize>::newObject(void)
 {
-  int* l_ptrNewObject = nullptr;
+  T* l_ptrNewObject = nullptr;
 
   unsigned int l_chunkSize = sizeof(m_chunk) / sizeof(SBlock);
 
@@ -21,7 +22,7 @@ int* CMemory::newObject(void)
   return l_ptrNewObject;
 }
 
-void CMemory::freeObject(int* f_ptrObject)
+template <typename T, unsigned int maxSize> void CMemory<T, maxSize>::freeObject(T* f_ptrObject)
 {
   if(nullptr != f_ptrObject)
   {
@@ -44,7 +45,7 @@ void CMemory::freeObject(int* f_ptrObject)
   }
 }
 
-CMemory::CMemory()
+template <typename T, unsigned int maxSize> CMemory<T, maxSize>::CMemory()
 {
   unsigned int l_storageSize = sizeof(m_chunk) / sizeof(SBlock);
 
@@ -53,3 +54,5 @@ CMemory::CMemory()
     m_chunk[l_iterator].isFree = true;
   }
 }
+
+#endif //MEMORY_INL_
