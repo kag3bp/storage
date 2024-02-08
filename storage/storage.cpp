@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-#include "memory.hpp"
+#include "list.hpp"
 
 struct SRandom
 {
@@ -12,52 +12,54 @@ struct SRandom
 
 int main()
 {
-  CMemory<float, 32> memory;
-  CMemory<SRandom, 2> memory2;
+  CList l_list;
+  unsigned int l_iterator;
+  int l_object;
 
+  std::cout << "\nAdd four numbers:\n";
 
-  float* asd = memory.newObject();
+  l_list.insert(7, 0);
+  l_list.insert(5, 0);
+  l_list.insert(3, 0);
+  l_list.insert(1, 0);
 
-  *asd = 12;
-
-  float* asd2 = memory.newObject();
-
-  *asd2 = 13;
-
-  float* asd3 = memory.newObject();
-
-  if(nullptr == asd3)
+  l_iterator = 0;
+  while(l_list.get(l_iterator, l_object))
   {
-    std::cout << "asd3 is nullptr\n";
+    std::cout << "Object number: " << l_iterator << " Value: " << l_object << "\n";
+
+    l_iterator++;
   }
 
-  std::cout << "asd \n" << *asd << "\n";
-  std::cout << "asd2 \n" << *asd2 << "\n";
+  std::cout << "\nInsert the missing numbers:\n";
 
-  memory.freeObject(asd2);
-  memory.freeObject(asd);
+  l_list.insert(0, 0);
+  l_list.insert(2, 2);
+  l_list.insert(4, 4);
+  l_list.insert(6, 6);
 
-  SRandom* struct1 = memory2.newObject();
-  SRandom* struct2 = memory2.newObject();
-  SRandom* struct3 = memory2.newObject();
-
-  struct1->number = 1;
-  struct2->number = 2;
-
-  if(nullptr == struct3)
+  l_iterator = 0;
+  while(l_list.get(l_iterator, l_object))
   {
-    std::cout << "struct3 is nullptr\n";
-  }
-  else
-  {
-    struct3->number = 33;
+    std::cout << "Object number: " << l_iterator << " Value: " << l_object << "\n";
+
+    l_iterator++;
   }
 
-  std::cout << "struct1->number \n" << struct1->number << "\n";
-  std::cout << "struct2->number \n" << struct2->number << "\n";
-    
-  memory2.freeObject(struct2);
-  memory2.freeObject(struct1);
+  std::cout << "\nRemove firstly added four numbers:\n";
+
+  l_list.remove(1);
+  l_list.remove(2);
+  l_list.remove(3);
+  l_list.remove(4);
+
+  l_iterator = 0;
+  while(l_list.get(l_iterator, l_object))
+  {
+    std::cout << "Object number: " << l_iterator << " Value: " << l_object << "\n";
+
+    l_iterator++;
+  }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
