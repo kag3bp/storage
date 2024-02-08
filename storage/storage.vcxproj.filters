@@ -18,9 +18,6 @@
     <ClCompile Include="storage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="list.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memory.hpp">
@@ -32,6 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="memory.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="list.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

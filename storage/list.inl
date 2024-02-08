@@ -1,6 +1,7 @@
-#include "list.hpp"
+#ifndef LIST_INL_
+#define LIST_INL_
 
-CList::SElem* CList::find(const unsigned int f_number)
+template <typename T, unsigned int maxSize> typename CList<T, maxSize>::SElem* CList<T, maxSize>::find(const unsigned int f_number)
 {
   SElem* l_ptrSeek = m_ptrStart;
   unsigned int l_number = 0;
@@ -16,19 +17,7 @@ CList::SElem* CList::find(const unsigned int f_number)
   return l_ptrSeek->ptrNext;
 }
 
-CList::CList()
-{
-  //initalize list
-  m_ptrStart = m_memory.newObject();
-  m_ptrStart->ptrPrev = nullptr;
-  m_ptrStart->ptrNext = m_memory.newObject();
-  m_ptrStart->ptrNext->ptrPrev = m_ptrStart;
-  m_ptrStart->ptrNext->ptrNext = nullptr;
-
-  m_size = 0;
-}
-
-bool CList::insert(const int& f_object, const unsigned int f_number)
+template <typename T, unsigned int maxSize> bool CList<T, maxSize>::insert(const T& f_object, const unsigned int f_number)
 {
   SElem* l_ptrInsert;
   unsigned int l_number = 0;
@@ -60,7 +49,7 @@ bool CList::insert(const int& f_object, const unsigned int f_number)
   return l_retVal;
 }
 
-bool CList::get(const unsigned int f_number, int& f_object)
+template <typename T, unsigned int maxSize> bool CList<T, maxSize>::get(const unsigned int f_number, T& f_object)
 {
   SElem* l_ptrGet = find(f_number);
   bool l_retVal = false;
@@ -74,7 +63,7 @@ bool CList::get(const unsigned int f_number, int& f_object)
   return l_retVal;
 }
 
-bool CList::remove(const unsigned int f_number)
+template <typename T, unsigned int maxSize> bool CList<T, maxSize>::remove(const unsigned int f_number)
 {
   SElem* l_ptrRemove = find(f_number);
   bool l_retVal = false;
@@ -93,3 +82,17 @@ bool CList::remove(const unsigned int f_number)
 
   return true;
 }
+
+template <typename T, unsigned int maxSize> CList<T, maxSize>::CList()
+{
+  //initalize list
+  m_ptrStart = m_memory.newObject();
+  m_ptrStart->ptrPrev = nullptr;
+  m_ptrStart->ptrNext = m_memory.newObject();
+  m_ptrStart->ptrNext->ptrPrev = m_ptrStart;
+  m_ptrStart->ptrNext->ptrNext = nullptr;
+
+  m_size = 0;
+}
+
+#endif //LIST_INL_

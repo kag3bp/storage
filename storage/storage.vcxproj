@@ -140,7 +140,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="list.cpp" />
     <ClCompile Include="storage.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +147,7 @@
     <ClInclude Include="memory.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="list.inl" />
     <None Include="memory.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

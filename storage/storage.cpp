@@ -1,18 +1,9 @@
-// storage.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include "list.hpp"
 
-struct SRandom
-{
-  bool asd;
-  int number;
-};
-
 int main()
 {
-  CList l_list;
+  CList<int, 8> l_list;
   unsigned int l_iterator;
   int l_object;
 
