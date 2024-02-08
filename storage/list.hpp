@@ -7,13 +7,6 @@ class CList
 {
   public:
 
-    struct SElem
-    {
-      int storedObject;
-      SElem* ptrPrev;
-      SElem* ptrNext;
-    };
-
     CList();
 
     bool insert(const int& f_object, const unsigned int f_number);
@@ -24,13 +17,20 @@ class CList
 
   private:
 
-  CMemory<SElem, 32> m_memory;
+    struct SElem
+    {
+      int storedObject;
+      SElem* ptrPrev;
+      SElem* ptrNext;
+    };
 
-  SElem* m_ptrStart;
+    CMemory<SElem, 32> m_memory;
 
-  unsigned int m_size;
+    SElem* m_ptrStart;
 
-  SElem* find(const unsigned int f_number);
+    unsigned int m_size;
+
+    SElem* find(const unsigned int f_number);
 
 };
 

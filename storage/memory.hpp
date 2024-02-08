@@ -5,12 +5,6 @@ template <typename T, unsigned int maxSize> class CMemory
 {
   public:
 
-    struct SBlock
-    {
-      bool isFree;
-      T object;
-    };
-
     CMemory();
 
     T* newObject(void);
@@ -18,6 +12,12 @@ template <typename T, unsigned int maxSize> class CMemory
     void freeObject(T* f_ptrObject);
 
   private:
+
+    struct SBlock
+    {
+      bool isFree;
+      T object;
+    };
 
     SBlock m_chunk[maxSize];
 
